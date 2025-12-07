@@ -2,7 +2,7 @@
 
 ## Mineral Forecasting Platform - Plutus Hackathon 2025
 
-### Current Status: MVP Complete ✅
+### Current Status: MVP Complete ✅ | Servers Running ✅
 
 ---
 
