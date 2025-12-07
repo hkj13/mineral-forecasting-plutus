@@ -1,0 +1,60 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+.pnp/
+.pnp.js
+
+# Environment
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build outputs
+.next/
+out/
+build/
+dist/
+*.egg-info/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Testing
+coverage/
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Model artifacts (large files)
+models/saved/*.h5
+models/saved/*.pkl
+models/saved/*.joblib
+
+# Data (keep structure, ignore large files)
+data/raw/*.csv
+data/raw/*.xlsx
+!data/processed/.gitkeep
+!data/mappings/hs_codes_mapping.csv
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
