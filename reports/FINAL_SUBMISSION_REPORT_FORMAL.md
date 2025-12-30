@@ -275,7 +275,7 @@ mineral-forecasting-plutus/
 
 ### 9.1 Notebook Location
 
-**GitHub Link:** https://github.com/hkj13/mineral-forecasting-plutus/blob/windsurf/autogen/notebooks/mineral_forecasting_models.ipynb
+**GitHub Link (Judges Repository):** https://github.com/hkj13/mineral-forecasting-judges/blob/main/notebooks/mineral_forecasting_models.ipynb
 
 ### 9.2 How to Run
 
@@ -299,7 +299,7 @@ mineral-forecasting-plutus/
 ### 9.4 Dataset Access
 
 All processed datasets are available at:
-https://github.com/hkj13/mineral-forecasting-plutus/tree/windsurf/autogen/data/processed
+https://github.com/hkj13/mineral-forecasting-judges/tree/main/data/processed
 
 | File | Description |
 |------|-------------|
