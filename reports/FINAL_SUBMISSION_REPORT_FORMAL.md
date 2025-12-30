@@ -346,7 +346,8 @@ https://github.com/hkj13/mineral-forecasting-plutus/tree/windsurf/autogen/data/p
 
 | Resource | Link |
 |----------|------|
-| GitHub Repository | https://github.com/hkj13/mineral-forecasting-plutus |
+| Judges Repository (Recommended) | https://github.com/hkj13/mineral-forecasting-judges |
+| Full Repository | https://github.com/hkj13/mineral-forecasting-plutus |
 | Branch | windsurf/autogen |
 | Jupyter Notebook | notebooks/mineral_forecasting_models.ipynb |
 | Processed Data | data/processed/ |
