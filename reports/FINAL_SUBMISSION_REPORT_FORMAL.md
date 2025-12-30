@@ -360,5 +360,3 @@ https://github.com/hkj13/mineral-forecasting-judges/tree/main/data/processed
 **Organizers:** TEXMiN Foundation, FINTECH, NVCTI - IIT (ISM) Dhanbad
 
 ---
-
-*For queries, please contact the competition coordinators.*
