@@ -40,6 +40,7 @@ import {
   Package,
   Target,
   Users,
+  PieChart,
 } from "lucide-react";
 
 export default function DashboardPage() {
@@ -127,6 +128,12 @@ export default function DashboardPage() {
                 <Button variant="ghost" className="text-slate-400 hover:text-white hover:bg-slate-700">
                   <Target className="w-4 h-4 mr-2" />
                   Scenarios
+                </Button>
+              </Link>
+              <Link href="/analytics">
+                <Button variant="ghost" className="text-slate-400 hover:text-white hover:bg-slate-700">
+                  <PieChart className="w-4 h-4 mr-2" />
+                  Analytics
                 </Button>
               </Link>
             </nav>
@@ -278,7 +285,7 @@ export default function DashboardPage() {
           {/* Right Column - Insights & Analytics */}
           <div className="space-y-6">
             {/* Dependency Gauges */}
-            <Card className="bg-slate-800/50">
+            <Card className="bg-slate-800/50 border border-slate-700">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg text-white flex items-center gap-2">
                   <Package className="w-5 h-5" />
@@ -298,7 +305,7 @@ export default function DashboardPage() {
             </Card>
 
             {/* Top Suppliers */}
-            <Card className="bg-slate-800/50">
+            <Card className="bg-slate-800/50 border border-slate-700">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg text-white flex items-center gap-2">
                   <Globe className="w-5 h-5" />
@@ -338,7 +345,7 @@ export default function DashboardPage() {
             />
 
             {/* Quick Actions */}
-            <Card className="bg-slate-800/50">
+            <Card className="bg-slate-800/50 border border-slate-700">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg text-white">Quick Actions</CardTitle>
               </CardHeader>

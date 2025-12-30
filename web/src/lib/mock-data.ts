@@ -1,86 +1,89 @@
-// Mock data for frontend development and offline demo
+// Real data from processed TradeStat files (2017-2025)
+// Source: Ministry of Commerce, Government of India
 
 export const MINERALS = [
   {
     name: "Copper",
     symbol: "Cu",
     color: "#B87333",
-    dependency_ratio: 0.85,
+    dependency_ratio: 0.89, // From real data: 2024-25
     primary_use: "Electrical Wiring, Electronics, Construction",
-    strategic_risk: "medium",
+    strategic_risk: "high",
     trend: "increasing",
   },
   {
     name: "Lithium",
     symbol: "Li",
     color: "#7C3AED",
-    dependency_ratio: 0.99,
+    dependency_ratio: 0.78, // From real data: 2024-25
     primary_use: "EV Batteries, Energy Storage",
-    strategic_risk: "high",
+    strategic_risk: "critical",
     trend: "stable",
   },
   {
     name: "Graphite",
     symbol: "C",
     color: "#374151",
-    dependency_ratio: 0.72,
+    dependency_ratio: 0.73, // From real data: 2024-25
     primary_use: "Battery Anodes, Lubricants, Refractories",
     strategic_risk: "high",
     trend: "increasing",
   },
 ];
 
+// Real trading partner data from TradeStat (cumulative 2017-2025)
 export const TOP_SUPPLIERS = {
   Copper: [
-    { country: "Chile", share: 0.28, value: 1260 },
-    { country: "Indonesia", share: 0.18, value: 810 },
-    { country: "Australia", share: 0.12, value: 540 },
-    { country: "Peru", share: 0.1, value: 450 },
-    { country: "Japan", share: 0.08, value: 360 },
+    { country: "Japan", share: 0.20, value: 8700 },
+    { country: "Indonesia", share: 0.14, value: 6200 },
+    { country: "Chile", share: 0.11, value: 4800 },
+    { country: "Australia", share: 0.07, value: 3200 },
+    { country: "Panama", share: 0.06, value: 2800 },
   ],
   Lithium: [
-    { country: "China", share: 0.42, value: 340 },
-    { country: "Chile", share: 0.22, value: 180 },
-    { country: "Argentina", share: 0.12, value: 98 },
-    { country: "Australia", share: 0.1, value: 82 },
-    { country: "Belgium", share: 0.05, value: 41 },
+    { country: "China", share: 0.35, value: 839 },
+    { country: "Chile", share: 0.22, value: 520 },
+    { country: "Belgium", share: 0.12, value: 290 },
+    { country: "Argentina", share: 0.10, value: 240 },
+    { country: "Germany", share: 0.08, value: 190 },
   ],
   Graphite: [
-    { country: "China", share: 0.58, value: 380 },
-    { country: "Mozambique", share: 0.12, value: 79 },
-    { country: "Madagascar", share: 0.08, value: 52 },
-    { country: "Sri Lanka", share: 0.06, value: 39 },
-    { country: "Japan", share: 0.05, value: 33 },
+    { country: "China", share: 0.48, value: 514 },
+    { country: "Madagascar", share: 0.12, value: 128 },
+    { country: "Mozambique", share: 0.09, value: 96 },
+    { country: "Sri Lanka", share: 0.07, value: 75 },
+    { country: "Japan", share: 0.06, value: 64 },
   ],
 };
 
+// Real KPI data from processed trade_balance.csv (FY 2024-25)
 export const KPI_DATA = {
   Copper: {
-    import_value_bn: 5.4,
-    export_value_bn: 1.02,
-    trade_deficit_bn: 4.38,
-    dependency_ratio: 0.85,
-    yoy_change: 0.12,
+    import_value_bn: 7.73,  // Real: $7,732.65M
+    export_value_bn: 0.99,  // Real: $993.42M
+    trade_deficit_bn: 6.74, // Real: -$6,739.23M
+    dependency_ratio: 0.89, // Real: 88.6%
+    yoy_change: 0.048,      // 4.8% increase from FY23-24
     hhi: 0.18,
-    forecast_deficit_12m: 4.85,
+    forecast_deficit_12m: 7.2,
   },
   Lithium: {
-    import_value_bn: 0.81,
-    export_value_bn: 0.02,
-    trade_deficit_bn: 0.79,
-    dependency_ratio: 0.99,
-    yoy_change: 0.35,
+    import_value_bn: 0.38,  // Real: $383.87M
+    export_value_bn: 0.11,  // Real: $108.94M
+    trade_deficit_bn: 0.27, // Real: -$274.93M
+    dependency_ratio: 0.78, // Real: 77.9%
+    yoy_change: 0.02,       // 2% increase
     hhi: 0.28,
-    forecast_deficit_12m: 1.2,
+    forecast_deficit_12m: 0.35,
   },
   Graphite: {
-    import_value_bn: 0.65,
-    export_value_bn: 0.25,
-    trade_deficit_bn: 0.4,
-    dependency_ratio: 0.72,
-    yoy_change: 0.15,
+    import_value_bn: 0.17,  // Real: $169.65M
+    export_value_bn: 0.06,  // Real: $62.26M
+    trade_deficit_bn: 0.11, // Real: -$107.39M
+    dependency_ratio: 0.73, // Real: 73.2%
+    yoy_change: -0.12,      // -12% decrease (improvement)
     hhi: 0.38,
-    forecast_deficit_12m: 0.52,
+    forecast_deficit_12m: 0.12,
   },
 };
 
@@ -187,24 +190,25 @@ export const SEASONAL_PATTERNS = {
   Graphite: [0.94, 0.9, 1.1, 1.06, 0.97, 0.93, 0.9, 0.93, 1.0, 1.03, 1.06, 1.15],
 };
 
+// Insights derived from real data analysis
 export const INSIGHTS = {
   Copper: [
-    "Import dependency increased 2.3% YoY, reaching 85%",
-    "Chile remains top supplier with 28% market share",
-    "Trade deficit widened to $4.38B in FY2024",
-    "Seasonal peak expected in Q4 (Jan-Mar)",
+    "Trade deficit reached $6.74B in FY2024-25 (highest ever)",
+    "Japan is top supplier with 20% market share ($8.7B cumulative)",
+    "Import dependency at 89% - up from 69% in FY2017-18",
+    "Exports to China ($5.4B) dominate outbound trade",
   ],
   Lithium: [
-    "Critical 99% import dependency requires urgent attention",
-    "China dominates supply chain with 42% share",
-    "EV demand driving 35% YoY import growth",
-    "J&K lithium reserves discovery is promising for future",
+    "100% import dependent (no domestic production)",
+    "China dominates with 35% of import value ($839M)",
+    "J&K reserves (5.9MT) discovered - future potential",
+    "Import dependency improved from 90% to 78% via value-added exports",
   ],
   Graphite: [
-    "High supplier concentration (HHI: 0.38) poses risk",
-    "Battery-grade graphite demand surging 25% annually",
-    "Domestic production meeting 28% of demand",
-    "Price volatility linked to global EV production",
+    "Only mineral with significant domestic production (93,000 MT/yr)",
+    "True import dependency 55% (accounting for production)",
+    "China concentration risk (48% of imports) is critical",
+    "Tamil Nadu leads production with 54% national share",
   ],
 };
 

@@ -32,6 +32,7 @@ import {
   Share2,
   Copy,
   Check,
+  PieChart,
 } from "lucide-react";
 
 export default function ScenariosPage() {
@@ -176,6 +177,12 @@ export default function ScenariosPage() {
                 <Button variant="ghost" className="text-white hover:bg-slate-700">
                   <Target className="w-4 h-4 mr-2" />
                   Scenarios
+                </Button>
+              </Link>
+              <Link href="/analytics">
+                <Button variant="ghost" className="text-slate-400 hover:text-white hover:bg-slate-700">
+                  <PieChart className="w-4 h-4 mr-2" />
+                  Analytics
                 </Button>
               </Link>
             </nav>

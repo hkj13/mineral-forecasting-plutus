@@ -59,7 +59,7 @@ export function KPICard({
   };
 
   return (
-    <Card className={`border-l-4 ${getStatusColor()} bg-slate-800/50`}>
+    <Card className={`border-l-4 border border-slate-700 ${getStatusColor()} bg-slate-800/50`}>
       <CardContent className="p-4">
         <div className="flex items-start justify-between">
           <div className="space-y-1">
@@ -117,7 +117,7 @@ export function DependencyGauge({ mineral, ratio, trend }: DependencyGaugeProps)
   const risk = getRiskLevel();
 
   return (
-    <Card className="bg-slate-800/50">
+    <Card className="bg-slate-800/50 border border-slate-700">
       <CardContent className="p-4">
         <div className="flex items-center justify-between mb-2">
           <h3 className="font-medium text-white">{mineral}</h3>
