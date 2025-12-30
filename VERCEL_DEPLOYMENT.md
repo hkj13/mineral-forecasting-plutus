@@ -1,28 +1,39 @@
 # Vercel Deployment Guide
 
-## Quick Deployment Steps
+## Deploy via Vercel Dashboard (Recommended)
 
-### Option 1: Deploy via Vercel CLI (Recommended)
+You're already on the right page! Just fix these settings:
+
+### CRITICAL SETTINGS TO CHANGE:
+
+| Setting | Change To |
+|---------|-----------|
+| **Framework Preset** | Next.js (not "Other") |
+| **Root Directory** | `web` (click Edit button) |
+
+### Step-by-Step:
+1. **Framework Preset**: Click dropdown → Select "Next.js"
+2. **Root Directory**: Click "Edit" → Type `web` → Confirm
+3. Click **Deploy**
+
+### Branch: `windsurf/autogen` ✅ (already correct)
+
+---
+
+## Alternative: Deploy via Vercel CLI
 
 ```bash
-# 1. Install Vercel CLI
-npm i -g vercel
+# Use sudo for global install on Mac
+sudo npm i -g vercel
 
-# 2. Navigate to web folder
+# Navigate to web folder
 cd web
 
-# 3. Deploy
+# Deploy
 vercel
-
-# Follow prompts:
-# - Link to existing project? No
-# - Project name: mineral-forecasting-plutus
-# - Framework: Next.js
-# - Build command: npm run build
-# - Output directory: .next
 ```
 
-### Option 2: Deploy via GitHub Integration
+## Alternative: Deploy via GitHub Integration
 
 1. **Push to GitHub** (already done - branch: `windsurf/autogen`)
 

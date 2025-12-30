@@ -23,7 +23,7 @@ export const MINERALS = [
   {
     name: "Graphite",
     symbol: "C",
-    color: "#374151",
+    color: "#10B981",
     dependency_ratio: 0.73, // From real data: 2024-25
     primary_use: "Battery Anodes, Lubricants, Refractories",
     strategic_risk: "high",
