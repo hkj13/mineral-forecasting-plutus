@@ -168,14 +168,14 @@ export default function ForecastingPage() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Left Sidebar - Parameters */}
           <div className="lg:col-span-1 space-y-4">
-            <Card className="bg-slate-800/50">
-              <CardHeader>
+            <Card className="bg-slate-800/50 border border-slate-700">
+              <CardHeader className="pb-3">
                 <CardTitle className="text-lg text-white flex items-center gap-2">
                   <Settings className="w-5 h-5" />
                   Forecast Parameters
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-4">
                 {/* Mineral Selection */}
                 <div className="space-y-2">
                   <label className="text-sm text-slate-400">Mineral</label>
@@ -273,7 +273,7 @@ export default function ForecastingPage() {
             </Card>
 
             {/* Model Info */}
-            <Card className="bg-slate-800/50">
+            <Card className="bg-slate-800/50 border border-slate-700">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-white">Model Information</CardTitle>
               </CardHeader>
@@ -294,7 +294,7 @@ export default function ForecastingPage() {
           {/* Main Content - Charts & Results */}
           <div className="lg:col-span-3 space-y-6">
             {/* Forecast Chart */}
-            <Card className="bg-slate-800/50">
+            <Card className="bg-slate-800/50 border border-slate-700">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div>
@@ -446,23 +446,76 @@ export default function ForecastingPage() {
             </Tabs>
 
             {/* Export Options */}
-            <Card className="bg-slate-800/50">
-              <CardHeader>
+            <Card className="bg-slate-800/50 border border-slate-700">
+              <CardHeader className="pb-2">
                 <CardTitle className="text-lg text-white">Export Forecast Results</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-3">
-                  <Button variant="outline" className="text-slate-300 border-slate-600 hover:bg-slate-700">
+                  <Button 
+                    variant="outline" 
+                    onClick={() => {
+                      if (!forecastData) return;
+                      const csvContent = [
+                        "Mineral,Model,Date,Forecast_Value_USD_Million,Lower_Bound,Upper_Bound",
+                        ...forecastData.dates.map((date, i) => 
+                          `${selectedMineral},${modelType.toUpperCase()},${date},${forecastData.forecast[i]},${forecastData.lower[i]},${forecastData.upper[i]}`
+                        )
+                      ].join("\n");
+                      const blob = new Blob([csvContent], { type: "text/csv" });
+                      const url = URL.createObjectURL(blob);
+                      const a = document.createElement("a");
+                      a.href = url;
+                      a.download = `${selectedMineral}_forecast_${horizonMonths}m_${modelType}.csv`;
+                      a.click();
+                    }}
+                  >
                     <FileText className="w-4 h-4 mr-2" />
                     Download CSV
                   </Button>
-                  <Button variant="outline" className="text-slate-300 border-slate-600 hover:bg-slate-700">
-                    <ImageIcon className="w-4 h-4 mr-2" />
-                    Export Charts (PNG)
-                  </Button>
-                  <Button variant="outline" className="text-slate-300 border-slate-600 hover:bg-slate-700">
+                  <Button 
+                    variant="outline"
+                    onClick={() => {
+                      if (!forecastData) return;
+                      const report = `MINERAL FORECASTING REPORT
+============================
+Generated: ${new Date().toLocaleString()}
+Mineral: ${selectedMineral}
+Model: ${modelType.toUpperCase()}
+Horizon: ${horizonMonths} months
+Confidence: ${confidenceLevel}%
+
+MODEL PERFORMANCE METRICS
+-------------------------
+MAE: ${forecastData.metrics.mae}
+MAPE: ${forecastData.metrics.mape}%
+RMSE: ${forecastData.metrics.rmse}
+R² Score: ${forecastData.metrics.r2}
+
+FORECAST SUMMARY
+----------------
+Start Date: ${forecastData.dates[0]}
+End Date: ${forecastData.dates[forecastData.dates.length - 1]}
+Avg Forecast: $${(forecastData.forecast.reduce((a,b)=>a+b,0)/forecastData.forecast.length).toFixed(1)}M
+Peak: $${Math.max(...forecastData.forecast).toFixed(1)}M
+Min: $${Math.min(...forecastData.forecast).toFixed(1)}M
+
+DETAILED FORECAST
+-----------------
+${forecastData.dates.map((d, i) => `${d}: $${forecastData.forecast[i].toFixed(1)}M (${forecastData.lower[i].toFixed(1)} - ${forecastData.upper[i].toFixed(1)})`).join("\n")}
+
+---
+Plutus Hackathon 2025 | TEXMiN Foundation | IIT(ISM) Dhanbad`;
+                      const blob = new Blob([report], { type: "text/plain" });
+                      const url = URL.createObjectURL(blob);
+                      const a = document.createElement("a");
+                      a.href = url;
+                      a.download = `${selectedMineral}_forecast_report.txt`;
+                      a.click();
+                    }}
+                  >
                     <FileText className="w-4 h-4 mr-2" />
-                    Generate PDF Report
+                    Export Report
                   </Button>
                 </div>
               </CardContent>

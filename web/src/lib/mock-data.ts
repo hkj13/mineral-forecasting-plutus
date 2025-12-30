@@ -141,11 +141,15 @@ export function generateForecast(
   lower: number[];
   upper: number[];
   metrics: { mae: number; mape: number; rmse: number; r2: number };
+  startYear: string;
 } {
   const lastImport =
     TRADE_TIME_SERIES[mineral as keyof typeof TRADE_TIME_SERIES]?.imports.slice(-1)[0]?.value || 100;
-  const startDate = new Date();
-  startDate.setMonth(startDate.getMonth() + 1);
+  
+  // Get the last date from historical data and start forecast from next month
+  const lastHistoricalDate = TRADE_TIME_SERIES[mineral as keyof typeof TRADE_TIME_SERIES]?.imports.slice(-1)[0]?.date;
+  const startDate = lastHistoricalDate ? new Date(lastHistoricalDate) : new Date();
+  startDate.setMonth(startDate.getMonth() + 1); // Start from next month after last data
 
   const dates: string[] = [];
   const forecast: number[] = [];
@@ -175,12 +179,18 @@ export function generateForecast(
     hybrid: { mae: 9.2, mape: 3.2, rmse: 13.4, r2: 0.94 },
   };
 
+  // Determine fiscal year for forecast start
+  const startFY = startDate.getMonth() >= 3 
+    ? `FY${startDate.getFullYear()}-${(startDate.getFullYear() + 1).toString().slice(-2)}`
+    : `FY${startDate.getFullYear() - 1}-${startDate.getFullYear().toString().slice(-2)}`;
+
   return {
     dates,
     forecast,
     lower,
     upper,
     metrics: metricsMap[modelType] || metricsMap.hybrid,
+    startYear: startFY,
   };
 }
 

@@ -498,59 +498,128 @@ export default function AnalyticsPage() {
                 </CardContent>
               </Card>
 
-              {/* India Map Placeholder */}
+              {/* India Map with State Labels */}
               <Card className="bg-slate-800/50 border-slate-700">
-                <CardHeader>
+                <CardHeader className="pb-2">
                   <CardTitle className="text-white flex items-center gap-2">
                     <Map className="w-5 h-5 text-green-400" />
-                    Geographic Distribution
+                    Geographic Distribution - {selectedMineral}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="aspect-square bg-slate-700/30 rounded-lg flex items-center justify-center relative">
-                    {/* Simplified India Map Representation */}
-                    <div className="text-center">
-                      <svg viewBox="0 0 400 400" className="w-full h-full max-w-md">
-                        {/* India outline simplified */}
-                        <path
-                          d="M200,50 L280,80 L320,150 L350,200 L330,280 L280,350 L200,380 L120,350 L80,280 L70,200 L100,150 L140,80 Z"
-                          fill="none"
-                          stroke="#475569"
-                          strokeWidth="2"
-                        />
-                        {/* State markers */}
-                        {selectedMineral === "Copper" && (
-                          <>
-                            <circle cx="180" cy="140" r="20" fill="#3B82F6" opacity="0.7" />
-                            <text x="180" y="145" textAnchor="middle" fill="white" fontSize="10">RAJ</text>
-                            <circle cx="240" cy="180" r="12" fill="#3B82F6" opacity="0.5" />
-                            <text x="240" y="184" textAnchor="middle" fill="white" fontSize="8">JH</text>
-                            <circle cx="200" cy="170" r="8" fill="#3B82F6" opacity="0.3" />
-                            <text x="200" y="173" textAnchor="middle" fill="white" fontSize="6">MP</text>
-                          </>
-                        )}
-                        {selectedMineral === "Graphite" && (
-                          <>
-                            <circle cx="200" cy="320" r="18" fill="#10B981" opacity="0.7" />
-                            <text x="200" y="324" textAnchor="middle" fill="white" fontSize="9">TN</text>
-                            <circle cx="240" cy="200" r="12" fill="#10B981" opacity="0.5" />
-                            <text x="240" y="204" textAnchor="middle" fill="white" fontSize="8">JH</text>
-                            <circle cx="260" cy="240" r="10" fill="#10B981" opacity="0.4" />
-                            <text x="260" y="244" textAnchor="middle" fill="white" fontSize="7">OD</text>
-                          </>
-                        )}
-                        {selectedMineral === "Lithium" && (
-                          <>
-                            <circle cx="160" cy="80" r="15" fill="#F59E0B" opacity="0.7" />
-                            <text x="160" y="84" textAnchor="middle" fill="white" fontSize="8">J&K</text>
-                            <text x="160" y="100" textAnchor="middle" fill="#F59E0B" fontSize="7">Reserves</text>
-                          </>
-                        )}
-                      </svg>
-                    </div>
-                    <div className="absolute bottom-4 left-4 right-4 bg-slate-800/80 rounded p-2 text-xs text-slate-400">
-                      Circle size represents production share. Data source: IBM/USGS
-                    </div>
+                  <div className="space-y-3">
+                    {/* Visual State Cards */}
+                    {selectedMineral === "Copper" && (
+                      <div className="grid grid-cols-1 gap-2">
+                        <div className="flex items-center justify-between p-3 bg-blue-500/20 border border-blue-500/30 rounded-lg">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">RAJ</div>
+                            <div>
+                              <p className="text-white font-medium">Rajasthan</p>
+                              <p className="text-xs text-slate-400">Jhunjhunu, Alwar districts</p>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-blue-400 font-bold">33,950 MT</p>
+                            <p className="text-xs text-slate-400">71.5% share</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-full bg-blue-400 flex items-center justify-center text-white font-bold text-sm">JH</div>
+                            <div>
+                              <p className="text-white font-medium">Jharkhand</p>
+                              <p className="text-xs text-slate-400">East Singhbhum</p>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-blue-400 font-bold">9,950 MT</p>
+                            <p className="text-xs text-slate-400">21% share</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between p-3 bg-blue-500/5 border border-slate-600 rounded-lg">
+                          <div className="flex items-center gap-3">
+                            <div className="w-6 h-6 rounded-full bg-blue-300 flex items-center justify-center text-white font-bold text-xs">MP</div>
+                            <div>
+                              <p className="text-white font-medium">Madhya Pradesh</p>
+                              <p className="text-xs text-slate-400">Balaghat</p>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-blue-400 font-bold">3,600 MT</p>
+                            <p className="text-xs text-slate-400">7.5% share</p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                    {selectedMineral === "Graphite" && (
+                      <div className="grid grid-cols-1 gap-2">
+                        <div className="flex items-center justify-between p-3 bg-green-500/20 border border-green-500/30 rounded-lg">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold">TN</div>
+                            <div>
+                              <p className="text-white font-medium">Tamil Nadu</p>
+                              <p className="text-xs text-slate-400">Sivaganga, Madurai</p>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-green-400 font-bold">325,000 MT</p>
+                            <p className="text-xs text-slate-400">53.8% share</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between p-3 bg-green-500/10 border border-green-500/20 rounded-lg">
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-full bg-green-400 flex items-center justify-center text-white font-bold text-sm">JH</div>
+                            <div>
+                              <p className="text-white font-medium">Jharkhand</p>
+                              <p className="text-xs text-slate-400">Palamau, Hazaribagh</p>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-green-400 font-bold">180,000 MT</p>
+                            <p className="text-xs text-slate-400">29.8% share</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between p-3 bg-green-500/5 border border-slate-600 rounded-lg">
+                          <div className="flex items-center gap-3">
+                            <div className="w-6 h-6 rounded-full bg-green-300 flex items-center justify-center text-white font-bold text-xs">OD</div>
+                            <div>
+                              <p className="text-white font-medium">Odisha</p>
+                              <p className="text-xs text-slate-400">Nuapada, Kalahandi</p>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-green-400 font-bold">99,500 MT</p>
+                            <p className="text-xs text-slate-400">16.5% share</p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                    {selectedMineral === "Lithium" && (
+                      <div className="grid grid-cols-1 gap-2">
+                        <div className="flex items-center justify-between p-3 bg-yellow-500/20 border border-yellow-500/30 rounded-lg">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-full bg-yellow-500 flex items-center justify-center text-white font-bold">J&K</div>
+                            <div>
+                              <p className="text-white font-medium">Jammu & Kashmir</p>
+                              <p className="text-xs text-slate-400">Reasi district (Salal-Haimana)</p>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-yellow-400 font-bold">5.9 MT</p>
+                            <p className="text-xs text-slate-400">Reserves (G3)</p>
+                          </div>
+                        </div>
+                        <div className="p-3 bg-slate-700/30 border border-slate-600 rounded-lg">
+                          <p className="text-yellow-400 text-sm flex items-center gap-2">
+                            <AlertTriangle className="w-4 h-4" />
+                            No active production - 100% import dependent
+                          </p>
+                          <p className="text-xs text-slate-400 mt-1">GSI discovered reserves in Feb 2023. Mining expected by 2026-27.</p>
+                        </div>
+                      </div>
+                    )}
+                    <p className="text-xs text-slate-500 text-center pt-2">Data source: Indian Bureau of Mines / USGS</p>
                   </div>
                 </CardContent>
               </Card>
