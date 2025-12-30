@@ -231,7 +231,7 @@ interface SeasonalHeatmapProps {
   mineral: string;
 }
 
-export function SeasonalHeatmap({ title, data, mineral }: SeasonalHeatmapProps) {
+export function SeasonalHeatmap({ mineral }: SeasonalHeatmapProps) {
   // Year-over-Year import growth data
   const yoyData = [
     { year: "FY18", imports: 6063, exports: 2773, growth: 0 },

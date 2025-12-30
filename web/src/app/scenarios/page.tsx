@@ -30,7 +30,6 @@ import {
   Zap,
   Factory,
   Share2,
-  Copy,
   Check,
   PieChart,
 } from "lucide-react";
@@ -43,6 +42,7 @@ export default function ScenariosPage() {
   const [magnitude, setMagnitude] = useState(20);
   const [affectedCountry, setAffectedCountry] = useState("China");
   const [duration, setDuration] = useState(12);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [scenarioResult, setScenarioResult] = useState<any>(null);
   const [isSimulating, setIsSimulating] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -51,9 +51,10 @@ export default function ScenariosPage() {
     const isAuthenticated = localStorage.getItem("isAuthenticated");
     if (!isAuthenticated) {
       router.push("/login");
-      return;
+    } else {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setIsLoading(false);
     }
-    setIsLoading(false);
   }, [router]);
 
   const handleLogout = () => {

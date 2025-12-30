@@ -13,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+// Tabs imports removed - not used in current implementation
 import { KPICard, DependencyGauge, InsightCard } from "@/components/charts/KPICard";
 import { TradeChart, SeasonalHeatmap } from "@/components/charts/TradeChart";
 import {
@@ -33,13 +33,11 @@ import {
   Download,
   LogOut,
   LineChart,
-  Map,
   Network,
   ChevronRight,
   DollarSign,
   Package,
   Target,
-  Users,
   PieChart,
 } from "lucide-react";
 
@@ -55,9 +53,10 @@ export default function DashboardPage() {
     const isAuthenticated = localStorage.getItem("isAuthenticated");
     if (!isAuthenticated) {
       router.push("/login");
-      return;
+    } else {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setIsLoading(false);
     }
-    setIsLoading(false);
   }, [router]);
 
   const handleLogout = () => {

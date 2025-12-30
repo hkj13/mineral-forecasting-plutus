@@ -19,7 +19,6 @@ import { TradeChart } from "@/components/charts/TradeChart";
 import { MINERALS, TRADE_TIME_SERIES, generateForecast } from "@/lib/mock-data";
 import {
   Diamond,
-  TrendingUp,
   BarChart3,
   Download,
   LogOut,
@@ -31,7 +30,6 @@ import {
   AlertCircle,
   RefreshCw,
   FileText,
-  ImageIcon,
   PieChart,
 } from "lucide-react";
 
@@ -45,22 +43,6 @@ export default function ForecastingPage() {
   const [forecastData, setForecastData] = useState<ReturnType<typeof generateForecast> | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
 
-  useEffect(() => {
-    const isAuthenticated = localStorage.getItem("isAuthenticated");
-    if (!isAuthenticated) {
-      router.push("/login");
-      return;
-    }
-    setIsLoading(false);
-    // Generate initial forecast
-    handleGenerateForecast();
-  }, [router]);
-
-  const handleLogout = () => {
-    localStorage.removeItem("isAuthenticated");
-    router.push("/login");
-  };
-
   const handleGenerateForecast = () => {
     setIsGenerating(true);
     // Simulate API call delay
@@ -70,6 +52,22 @@ export default function ForecastingPage() {
       setIsGenerating(false);
     }, 1000);
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem("isAuthenticated");
+    router.push("/login");
+  };
+
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem("isAuthenticated");
+    if (!isAuthenticated) {
+      router.push("/login");
+    } else {
+      setIsLoading(false);
+      handleGenerateForecast();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router]);
 
   if (isLoading) {
     return (

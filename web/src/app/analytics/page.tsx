@@ -30,7 +30,6 @@ import {
   CheckCircle,
   MapPin,
   Globe,
-  ArrowRight,
 } from "lucide-react";
 
 // ANOVA results data
@@ -122,9 +121,10 @@ export default function AnalyticsPage() {
     const isAuthenticated = localStorage.getItem("isAuthenticated");
     if (!isAuthenticated) {
       router.push("/login");
-      return;
+    } else {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setIsLoading(false);
     }
-    setIsLoading(false);
   }, [router]);
 
   const handleLogout = () => {
