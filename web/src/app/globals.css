@@ -17,28 +17,28 @@
   --bg-gradient: linear-gradient(180deg, #f0f4f8 0%, #e1e8ed 100%);
   --bg-overlay: linear-gradient(135deg, rgba(6, 182, 212, 0.03) 0%, rgba(139, 92, 246, 0.03) 100%);
   
-  /* Vibrant Accent Colors - Rich and Saturated */
-  --neon-cyan: #06b6d4;
-  --neon-purple: #8b5cf6;
-  --neon-pink: #ec4899;
-  --neon-blue: #2563eb;
-  --neon-emerald: #10b981;
-  --neon-orange: #f97316;
-  --neon-red: #ef4444;
+  /* DARKER Accent Colors for Light Mode - Must be readable! */
+  --neon-cyan: #0e7490;
+  --neon-purple: #6d28d9;
+  --neon-pink: #be185d;
+  --neon-blue: #1d4ed8;
+  --neon-emerald: #047857;
+  --neon-orange: #c2410c;
+  --neon-red: #b91c1c;
   
-  /* Holographic Gradients */
-  --holo-gradient: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 50%, #ec4899 100%);
+  /* Holographic Gradients - Darker for light mode */
+  --holo-gradient: linear-gradient(135deg, #0e7490 0%, #6d28d9 50%, #be185d 100%);
   --cyber-gradient: linear-gradient(135deg, #f0f4f8 0%, #e1e8ed 100%);
   
   /* Glass Effects - Light Mode with Color */
   --glass-bg: rgba(255, 255, 255, 0.95);
-  --glass-border: rgba(6, 182, 212, 0.25);
-  --glass-glow: rgba(6, 182, 212, 0.1);
+  --glass-border: rgba(14, 116, 144, 0.3);
+  --glass-glow: rgba(14, 116, 144, 0.15);
   
-  /* Text Colors - Strong Contrast */
+  /* Text Colors - STRONG Contrast for readability */
   --text-primary: #0f172a;
-  --text-secondary: #334155;
-  --text-muted: #64748b;
+  --text-secondary: #1e293b;
+  --text-muted: #475569;
   
   /* Colored Shadows - Not plain gray */
   --card-shadow: 0 4px 16px rgba(6, 182, 212, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -820,4 +820,202 @@ main,
   50% { 
     box-shadow: 0 0 20px currentColor, 0 0 40px currentColor; 
   }
+}
+
+/* ===== LIGHT MODE TEXT READABILITY FIXES ===== */
+/* Override Tailwind color classes to be darker in light mode */
+
+[data-theme='light'] .text-cyan-400,
+[data-theme='light'] .text-cyan-500 {
+  color: #0e7490 !important;
+}
+
+[data-theme='light'] .text-purple-400,
+[data-theme='light'] .text-purple-500 {
+  color: #6d28d9 !important;
+}
+
+[data-theme='light'] .text-pink-400,
+[data-theme='light'] .text-pink-500 {
+  color: #be185d !important;
+}
+
+[data-theme='light'] .text-emerald-400,
+[data-theme='light'] .text-emerald-500 {
+  color: #047857 !important;
+}
+
+[data-theme='light'] .text-orange-400,
+[data-theme='light'] .text-orange-500 {
+  color: #c2410c !important;
+}
+
+[data-theme='light'] .text-blue-400,
+[data-theme='light'] .text-blue-500 {
+  color: #1d4ed8 !important;
+}
+
+[data-theme='light'] .text-red-400,
+[data-theme='light'] .text-red-500 {
+  color: #b91c1c !important;
+}
+
+[data-theme='light'] .text-green-400,
+[data-theme='light'] .text-green-500 {
+  color: #047857 !important;
+}
+
+[data-theme='light'] .text-yellow-400,
+[data-theme='light'] .text-yellow-500 {
+  color: #a16207 !important;
+}
+
+/* Slate text colors - make darker */
+[data-theme='light'] .text-slate-300,
+[data-theme='light'] .text-slate-400 {
+  color: #475569 !important;
+}
+
+[data-theme='light'] .text-slate-500 {
+  color: #334155 !important;
+}
+
+/* White text on light backgrounds - make dark */
+[data-theme='light'] .text-white {
+  color: #0f172a !important;
+}
+
+/* Fix gradient text to be darker in light mode */
+[data-theme='light'] .bg-clip-text {
+  -webkit-text-fill-color: #0f172a;
+}
+
+[data-theme='light'] .from-cyan-400,
+[data-theme='light'] .via-cyan-400,
+[data-theme='light'] .to-cyan-400 {
+  --tw-gradient-stops: #0e7490;
+}
+
+[data-theme='light'] .from-purple-400,
+[data-theme='light'] .via-purple-400,
+[data-theme='light'] .to-purple-400 {
+  --tw-gradient-stops: #6d28d9;
+}
+
+/* Border colors - darker in light mode */
+[data-theme='light'] .border-cyan-500\/20,
+[data-theme='light'] .border-cyan-500\/30 {
+  border-color: rgba(14, 116, 144, 0.4) !important;
+}
+
+[data-theme='light'] .border-purple-500\/20,
+[data-theme='light'] .border-purple-500\/30 {
+  border-color: rgba(109, 40, 217, 0.4) !important;
+}
+
+[data-theme='light'] .border-pink-500\/20,
+[data-theme='light'] .border-pink-500\/30 {
+  border-color: rgba(190, 24, 93, 0.4) !important;
+}
+
+[data-theme='light'] .border-emerald-500\/20,
+[data-theme='light'] .border-emerald-500\/30 {
+  border-color: rgba(4, 120, 87, 0.4) !important;
+}
+
+/* Background colors - lighter/visible in light mode */
+[data-theme='light'] .bg-cyan-500\/10,
+[data-theme='light'] .bg-cyan-500\/20 {
+  background-color: rgba(14, 116, 144, 0.12) !important;
+}
+
+[data-theme='light'] .bg-purple-500\/10,
+[data-theme='light'] .bg-purple-500\/20 {
+  background-color: rgba(109, 40, 217, 0.12) !important;
+}
+
+[data-theme='light'] .bg-emerald-500\/10,
+[data-theme='light'] .bg-emerald-500\/20 {
+  background-color: rgba(4, 120, 87, 0.12) !important;
+}
+
+[data-theme='light'] .bg-pink-500\/10,
+[data-theme='light'] .bg-pink-500\/20 {
+  background-color: rgba(190, 24, 93, 0.12) !important;
+}
+
+[data-theme='light'] .bg-orange-500\/10,
+[data-theme='light'] .bg-orange-500\/20 {
+  background-color: rgba(194, 65, 12, 0.12) !important;
+}
+
+[data-theme='light'] .bg-red-500\/10,
+[data-theme='light'] .bg-red-500\/20 {
+  background-color: rgba(185, 28, 28, 0.12) !important;
+}
+
+/* Slate backgrounds - lighter for visibility */
+[data-theme='light'] .bg-slate-800,
+[data-theme='light'] .bg-slate-800\/50 {
+  background-color: rgba(241, 245, 249, 0.9) !important;
+}
+
+[data-theme='light'] .bg-slate-700,
+[data-theme='light'] .bg-slate-700\/50,
+[data-theme='light'] .bg-slate-700\/30 {
+  background-color: rgba(226, 232, 240, 0.8) !important;
+}
+
+/* Remove text glow effects in light mode */
+[data-theme='light'] .text-glow-cyan,
+[data-theme='light'] .text-glow-purple,
+[data-theme='light'] .text-glow-emerald {
+  text-shadow: none !important;
+}
+
+/* Font-cyber and font-tech should be dark in light mode */
+[data-theme='light'] .font-cyber,
+[data-theme='light'] .font-tech {
+  color: #0f172a;
+}
+
+/* Ensure card titles are readable */
+[data-theme='light'] [class*="CardTitle"] {
+  color: #0f172a !important;
+}
+
+/* Fix input/select colors in light mode */
+[data-theme='light'] input,
+[data-theme='light'] select,
+[data-theme='light'] textarea {
+  color: #0f172a !important;
+  background-color: #ffffff !important;
+  border-color: rgba(14, 116, 144, 0.3) !important;
+}
+
+[data-theme='light'] input::placeholder,
+[data-theme='light'] textarea::placeholder {
+  color: #64748b !important;
+}
+
+/* Fix dropdown/select trigger text */
+[data-theme='light'] [data-radix-collection-item] {
+  color: #0f172a !important;
+}
+
+/* Recharts tooltip in light mode */
+[data-theme='light'] .recharts-default-tooltip {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border: 2px solid rgba(14, 116, 144, 0.3) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
+}
+
+[data-theme='light'] .recharts-tooltip-label {
+  color: #0f172a !important;
+}
+
+/* Chart grid in light mode */
+[data-theme='light'] .recharts-cartesian-grid-horizontal line,
+[data-theme='light'] .recharts-cartesian-grid-vertical line {
+  stroke: rgba(14, 116, 144, 0.15) !important;
 }
