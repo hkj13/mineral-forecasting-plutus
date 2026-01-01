@@ -13,13 +13,13 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("light");
+  const [theme, setThemeState] = useState<Theme>("dark");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Get saved theme or default to light
+    // Get saved theme or default to DARK mode
     const savedTheme = localStorage.getItem("theme-preference") as Theme | null;
-    const initialTheme = savedTheme || "light";
+    const initialTheme = savedTheme || "dark";
     
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setThemeState(initialTheme);
@@ -63,7 +63,7 @@ export function useTheme() {
   // Return default values during SSR/static generation to prevent build errors
   if (context === undefined) {
     return {
-      theme: "light" as Theme,
+      theme: "dark" as Theme,
       toggleTheme: () => {},
       setTheme: () => {},
     };
