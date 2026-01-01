@@ -131,69 +131,74 @@ export default function ScenariosPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-900">
-        <div className="flex items-center gap-3 text-white">
-          <svg className="animate-spin h-6 w-6" viewBox="0 0 24 24">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-          </svg>
-          <span>Loading...</span>
+      <div className="min-h-screen flex items-center justify-center cyber-bg">
+        <div className="flex flex-col items-center gap-4">
+          <div className="relative">
+            <div className="w-16 h-16 border-4 border-emerald-500/30 rounded-full animate-spin border-t-emerald-400" />
+            <div className="absolute inset-0 w-16 h-16 border-4 border-cyan-500/20 rounded-full animate-spin border-b-cyan-400" style={{ animationDirection: 'reverse', animationDuration: '1.5s' }} />
+          </div>
+          <span className="font-tech text-emerald-400 text-lg tracking-wider animate-pulse">LOADING SCENARIO ENGINE...</span>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-900">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-slate-800/95 backdrop-blur-sm border-b border-slate-700">
+    <div className="min-h-screen cyber-bg relative">
+      {/* Animated Background */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-cyan-500/5" />
+      </div>
+
+      {/* Header - Futuristic */}
+      <header className="sticky top-0 z-50 glass border-b border-emerald-500/20">
         <div className="max-w-[1600px] mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 group">
               <Link href="/dashboard">
-                <div className="p-2 rounded-lg bg-blue-500/20 hover:bg-blue-500/30 transition-colors">
-                  <Diamond className="w-6 h-6 text-blue-400" />
+                <div className="relative p-2.5 rounded-xl bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 border border-emerald-500/30 group-hover:border-emerald-400/50 transition-all">
+                  <Diamond className="w-6 h-6 text-emerald-400" />
                 </div>
               </Link>
               <div>
-                <h1 className="text-xl font-bold text-white">Scenario Builder</h1>
-                <p className="text-xs text-slate-400">What-If Policy Simulations</p>
+                <h1 className="font-cyber text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">SCENARIO BUILDER</h1>
+                <p className="text-xs text-emerald-500/70 font-tech tracking-widest">WHAT-IF POLICY SIMULATIONS</p>
               </div>
             </div>
 
             <nav className="hidden md:flex items-center gap-1">
               <Link href="/dashboard">
-                <Button variant="ghost" className="text-slate-400 hover:text-white hover:bg-slate-700">
+                <Button variant="ghost" className="text-slate-400 hover:text-cyan-400 hover:bg-cyan-500/10 border border-transparent hover:border-cyan-500/30 transition-all font-tech">
                   <BarChart3 className="w-4 h-4 mr-2" />
                   Dashboard
                 </Button>
               </Link>
               <Link href="/forecasting">
-                <Button variant="ghost" className="text-slate-400 hover:text-white hover:bg-slate-700">
+                <Button variant="ghost" className="text-slate-400 hover:text-purple-400 hover:bg-purple-500/10 border border-transparent hover:border-purple-500/30 transition-all font-tech">
                   <LineChart className="w-4 h-4 mr-2" />
                   Forecasting
                 </Button>
               </Link>
               <Link href="/scenarios">
-                <Button variant="ghost" className="text-white hover:bg-slate-700">
+                <Button variant="ghost" className="relative text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 border border-transparent hover:border-emerald-500/30 transition-all font-tech">
                   <Target className="w-4 h-4 mr-2" />
                   Scenarios
                 </Button>
               </Link>
               <Link href="/analytics">
-                <Button variant="ghost" className="text-slate-400 hover:text-white hover:bg-slate-700">
+                <Button variant="ghost" className="text-slate-400 hover:text-pink-400 hover:bg-pink-500/10 border border-transparent hover:border-pink-500/30 transition-all font-tech">
                   <PieChart className="w-4 h-4 mr-2" />
                   Analytics
                 </Button>
               </Link>
             </nav>
 
-            <div className="flex items-center gap-2">
-              <Button variant="outline" size="sm" className="text-slate-300 border-slate-600">
+            <div className="flex items-center gap-3">
+              <Button variant="outline" size="sm" className="cyber-button rounded-lg px-4 py-2 font-tech">
                 <Download className="w-4 h-4 mr-2" />
                 Export
               </Button>
-              <Button variant="ghost" size="sm" onClick={handleLogout} className="text-slate-400 hover:text-white">
+              <Button variant="ghost" size="sm" onClick={handleLogout} className="text-slate-500 hover:text-red-400 hover:bg-red-500/10 border border-transparent hover:border-red-500/30 rounded-lg transition-all">
                 <LogOut className="w-4 h-4" />
               </Button>
             </div>
@@ -202,19 +207,19 @@ export default function ScenariosPage() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-[1600px] mx-auto px-4 py-6">
+      <main className="max-w-[1600px] mx-auto px-4 py-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left Column - Scenario Builder */}
           <div className="space-y-4">
             {/* Pre-built Scenarios */}
-            <Card className="bg-slate-800/50">
-              <CardHeader>
-                <CardTitle className="text-lg text-white">Quick Scenarios</CardTitle>
-                <CardDescription className="text-slate-400">
+            <Card className="glass-card rounded-xl border-emerald-500/20">
+              <CardHeader className="border-b border-emerald-500/10">
+                <CardTitle className="text-lg text-emerald-400 font-tech tracking-wider">QUICK SCENARIOS</CardTitle>
+                <CardDescription className="text-slate-400 font-tech">
                   Pre-configured policy scenarios
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-2">
+              <CardContent className="space-y-2 pt-4">
                 {SCENARIOS.map((s) => (
                   <button
                     key={s.id}
@@ -223,17 +228,17 @@ export default function ScenariosPage() {
                       setMagnitude(s.magnitude * 100);
                       if (s.affected_mineral !== "all") setSelectedMineral(s.affected_mineral);
                     }}
-                    className="w-full p-3 rounded-lg bg-slate-700/50 hover:bg-slate-700 border border-slate-600/50 text-left transition-colors"
+                    className="w-full p-3 rounded-xl bg-gradient-to-r from-slate-800/50 to-slate-900/50 hover:from-emerald-500/10 hover:to-cyan-500/10 border border-slate-700/50 hover:border-emerald-500/30 text-left transition-all group"
                   >
                     <div className="flex items-start gap-3">
-                      <div className="p-2 rounded-lg bg-slate-600/50">
+                      <div className="p-2 rounded-lg bg-slate-800 border border-slate-700 group-hover:border-emerald-500/30">
                         {s.type === "import_ban" && <Globe className="w-4 h-4 text-red-400" />}
                         {s.type === "price_spike" && <Zap className="w-4 h-4 text-yellow-400" />}
                         {s.type === "production_ramp" && <Factory className="w-4 h-4 text-green-400" />}
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-white">{s.name}</p>
-                        <p className="text-xs text-slate-400 mt-0.5">{s.description}</p>
+                        <p className="text-sm font-tech text-white">{s.name}</p>
+                        <p className="text-xs text-slate-500 mt-0.5">{s.description}</p>
                       </div>
                     </div>
                   </button>
@@ -242,21 +247,21 @@ export default function ScenariosPage() {
             </Card>
 
             {/* Custom Scenario Builder */}
-            <Card className="bg-slate-800/50">
-              <CardHeader>
-                <CardTitle className="text-lg text-white">Custom Scenario</CardTitle>
+            <Card className="glass-card rounded-xl border-cyan-500/20">
+              <CardHeader className="border-b border-cyan-500/10">
+                <CardTitle className="text-lg text-cyan-400 font-tech tracking-wider">CUSTOM SCENARIO</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-5">
+              <CardContent className="space-y-5 pt-4">
                 {/* Mineral */}
                 <div className="space-y-2">
-                  <label className="text-sm text-slate-400">Target Mineral</label>
+                  <label className="text-xs text-cyan-500/70 font-tech tracking-wider">TARGET MINERAL</label>
                   <Select value={selectedMineral} onValueChange={setSelectedMineral}>
-                    <SelectTrigger className="bg-slate-700 border-slate-600 text-white">
+                    <SelectTrigger className="glass border-cyan-500/30 text-cyan-400 font-tech hover:border-cyan-400/50 transition-all">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent className="bg-slate-800 border-slate-700">
+                    <SelectContent className="glass border-cyan-500/30">
                       {MINERALS.map((m) => (
-                        <SelectItem key={m.name} value={m.name} className="text-white">
+                        <SelectItem key={m.name} value={m.name} className="text-slate-300 hover:text-cyan-400 hover:bg-cyan-500/10 font-tech">
                           {m.name}
                         </SelectItem>
                       ))}
@@ -266,15 +271,15 @@ export default function ScenariosPage() {
 
                 {/* Scenario Type */}
                 <div className="space-y-2">
-                  <label className="text-sm text-slate-400">Scenario Type</label>
+                  <label className="text-xs text-purple-500/70 font-tech tracking-wider">SCENARIO TYPE</label>
                   <Select value={scenarioType} onValueChange={setScenarioType}>
-                    <SelectTrigger className="bg-slate-700 border-slate-600 text-white">
+                    <SelectTrigger className="glass border-purple-500/30 text-purple-400 font-tech hover:border-purple-400/50 transition-all">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent className="bg-slate-800 border-slate-700">
-                      <SelectItem value="import_ban" className="text-white">Import Ban/Restriction</SelectItem>
-                      <SelectItem value="price_spike" className="text-white">Global Price Spike</SelectItem>
-                      <SelectItem value="production_ramp" className="text-white">Domestic Production Ramp</SelectItem>
+                    <SelectContent className="glass border-purple-500/30">
+                      <SelectItem value="import_ban" className="text-slate-300 hover:text-purple-400 hover:bg-purple-500/10 font-tech">Import Ban/Restriction</SelectItem>
+                      <SelectItem value="price_spike" className="text-slate-300 hover:text-purple-400 hover:bg-purple-500/10 font-tech">Global Price Spike</SelectItem>
+                      <SelectItem value="production_ramp" className="text-slate-300 hover:text-purple-400 hover:bg-purple-500/10 font-tech">Domestic Production Ramp</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>

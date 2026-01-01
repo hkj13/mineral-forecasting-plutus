@@ -134,13 +134,13 @@ export default function AnalyticsPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-900">
-        <div className="flex items-center gap-3 text-white">
-          <svg className="animate-spin h-6 w-6" viewBox="0 0 24 24">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-          </svg>
-          <span>Loading...</span>
+      <div className="min-h-screen flex items-center justify-center cyber-bg">
+        <div className="flex flex-col items-center gap-4">
+          <div className="relative">
+            <div className="w-16 h-16 border-4 border-pink-500/30 rounded-full animate-spin border-t-pink-400" />
+            <div className="absolute inset-0 w-16 h-16 border-4 border-cyan-500/20 rounded-full animate-spin border-b-cyan-400" style={{ animationDirection: 'reverse', animationDuration: '1.5s' }} />
+          </div>
+          <span className="font-tech text-pink-400 text-lg tracking-wider animate-pulse">LOADING ANALYTICS ENGINE...</span>
         </div>
       </div>
     );
@@ -150,56 +150,62 @@ export default function AnalyticsPage() {
   const networkData = TRADE_NETWORK[selectedMineral as keyof typeof TRADE_NETWORK] || [];
 
   return (
-    <div className="min-h-screen bg-slate-900">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-slate-800/95 backdrop-blur-sm border-b border-slate-700">
+    <div className="min-h-screen cyber-bg relative">
+      {/* Animated Background */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 via-transparent to-cyan-500/5" />
+      </div>
+
+      {/* Header - Futuristic */}
+      <header className="sticky top-0 z-50 glass border-b border-pink-500/20">
         <div className="max-w-[1600px] mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 group">
               <Link href="/dashboard">
-                <div className="p-2 rounded-lg bg-blue-500/20 hover:bg-blue-500/30 transition-colors">
-                  <Diamond className="w-6 h-6 text-blue-400" />
+                <div className="relative p-2.5 rounded-xl bg-gradient-to-br from-pink-500/20 to-cyan-500/20 border border-pink-500/30 group-hover:border-pink-400/50 transition-all">
+                  <Diamond className="w-6 h-6 text-pink-400" />
                 </div>
               </Link>
               <div>
-                <h1 className="text-xl font-bold text-white">Advanced Analytics</h1>
-                <p className="text-xs text-slate-400">ANOVA, Mapping & Network Analysis</p>
+                <h1 className="font-cyber text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-cyan-400">ANALYTICS HUB</h1>
+                <p className="text-xs text-pink-500/70 font-tech tracking-widest">ANOVA & NETWORK ANALYSIS</p>
               </div>
             </div>
 
             <nav className="hidden md:flex items-center gap-1">
               <Link href="/dashboard">
-                <Button variant="ghost" className="text-slate-400 hover:text-white hover:bg-slate-700">
+                <Button variant="ghost" className="text-slate-400 hover:text-cyan-400 hover:bg-cyan-500/10 border border-transparent hover:border-cyan-500/30 transition-all font-tech">
                   <BarChart3 className="w-4 h-4 mr-2" />
                   Dashboard
                 </Button>
               </Link>
               <Link href="/forecasting">
-                <Button variant="ghost" className="text-slate-400 hover:text-white hover:bg-slate-700">
+                <Button variant="ghost" className="text-slate-400 hover:text-purple-400 hover:bg-purple-500/10 border border-transparent hover:border-purple-500/30 transition-all font-tech">
                   <LineChart className="w-4 h-4 mr-2" />
                   Forecasting
                 </Button>
               </Link>
               <Link href="/scenarios">
-                <Button variant="ghost" className="text-slate-400 hover:text-white hover:bg-slate-700">
+                <Button variant="ghost" className="text-slate-400 hover:text-emerald-400 hover:bg-emerald-500/10 border border-transparent hover:border-emerald-500/30 transition-all font-tech">
                   <Target className="w-4 h-4 mr-2" />
                   Scenarios
                 </Button>
               </Link>
               <Link href="/analytics">
-                <Button variant="ghost" className="text-white hover:bg-slate-700">
+                <Button variant="ghost" className="relative text-pink-400 hover:text-pink-300 hover:bg-pink-500/10 border border-transparent hover:border-pink-500/30 transition-all font-tech">
                   <PieChart className="w-4 h-4 mr-2" />
                   Analytics
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-transparent via-pink-400 to-transparent" />
                 </Button>
               </Link>
             </nav>
 
-            <div className="flex items-center gap-2">
-              <Button variant="outline" size="sm" className="text-slate-300 border-slate-600">
+            <div className="flex items-center gap-3">
+              <Button variant="outline" size="sm" className="cyber-button rounded-lg px-4 py-2 font-tech">
                 <Download className="w-4 h-4 mr-2" />
                 Export
               </Button>
-              <Button variant="ghost" size="sm" onClick={handleLogout} className="text-slate-400 hover:text-white">
+              <Button variant="ghost" size="sm" onClick={handleLogout} className="text-slate-500 hover:text-red-400 hover:bg-red-500/10 border border-transparent hover:border-red-500/30 rounded-lg transition-all">
                 <LogOut className="w-4 h-4" />
               </Button>
             </div>
@@ -207,18 +213,18 @@ export default function AnalyticsPage() {
         </div>
       </header>
 
-      {/* Filter Bar */}
-      <div className="bg-slate-800/50 border-b border-slate-700">
-        <div className="max-w-[1600px] mx-auto px-4 py-3">
+      {/* Filter Bar - Futuristic */}
+      <div className="glass-card border-t-0 border-x-0 rounded-none border-b border-pink-500/10">
+        <div className="max-w-[1600px] mx-auto px-4 py-4">
           <div className="flex items-center gap-4">
-            <span className="text-sm text-slate-400">Mineral:</span>
+            <span className="text-xs text-pink-500/70 font-tech tracking-wider">MINERAL</span>
             <Select value={selectedMineral} onValueChange={setSelectedMineral}>
-              <SelectTrigger className="w-40 bg-slate-700 border-slate-600 text-white">
+              <SelectTrigger className="w-44 glass border-pink-500/30 text-pink-400 font-tech hover:border-pink-400/50 transition-all">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="bg-slate-800 border-slate-700">
+              <SelectContent className="glass border-pink-500/30">
                 {MINERALS.map((m) => (
-                  <SelectItem key={m.name} value={m.name} className="text-white hover:bg-slate-700">
+                  <SelectItem key={m.name} value={m.name} className="text-slate-300 hover:text-pink-400 hover:bg-pink-500/10 font-tech">
                     {m.name}
                   </SelectItem>
                 ))}
@@ -229,18 +235,18 @@ export default function AnalyticsPage() {
       </div>
 
       {/* Main Content */}
-      <main className="max-w-[1600px] mx-auto px-4 py-6">
+      <main className="max-w-[1600px] mx-auto px-4 py-6 relative z-10">
         <Tabs defaultValue="anova" className="w-full">
-          <TabsList className="mb-6">
-            <TabsTrigger value="anova">
+          <TabsList className="mb-6 glass border border-pink-500/20 p-1">
+            <TabsTrigger value="anova" className="data-[state=active]:bg-pink-500/20 data-[state=active]:text-pink-400 font-tech">
               <BarChart3 className="w-4 h-4 mr-2" />
               ANOVA Analysis
             </TabsTrigger>
-            <TabsTrigger value="state-mapping">
+            <TabsTrigger value="state-mapping" className="data-[state=active]:bg-pink-500/20 data-[state=active]:text-pink-400 font-tech">
               <Map className="w-4 h-4 mr-2" />
               State-Level Mapping
             </TabsTrigger>
-            <TabsTrigger value="network">
+            <TabsTrigger value="network" className="data-[state=active]:bg-pink-500/20 data-[state=active]:text-pink-400 font-tech">
               <Network className="w-4 h-4 mr-2" />
               Trade Network
             </TabsTrigger>
@@ -250,52 +256,52 @@ export default function AnalyticsPage() {
           <TabsContent value="anova" className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {/* Mineral Comparison */}
-              <Card className="bg-slate-800/50 border-slate-700">
-                <CardHeader>
-                  <CardTitle className="text-white flex items-center gap-2">
-                    <PieChart className="w-5 h-5 text-blue-400" />
-                    Cross-Mineral Comparison
+              <Card className="glass-card rounded-xl border-cyan-500/20">
+                <CardHeader className="border-b border-cyan-500/10">
+                  <CardTitle className="text-cyan-400 flex items-center gap-2 font-tech tracking-wider">
+                    <PieChart className="w-5 h-5" />
+                    CROSS-MINERAL COMPARISON
                   </CardTitle>
-                  <CardDescription>One-way ANOVA: Import values by mineral</CardDescription>
+                  <CardDescription className="font-tech">One-way ANOVA: Import values by mineral</CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-4 pt-4">
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="p-3 bg-slate-700/50 rounded-lg">
-                      <p className="text-xs text-slate-400">F-Statistic</p>
-                      <p className="text-2xl font-bold text-white">{ANOVA_RESULTS.mineral_comparison.f_statistic}</p>
+                    <div className="p-3 rounded-lg bg-gradient-to-br from-cyan-500/10 to-cyan-500/5 border border-cyan-500/20">
+                      <p className="text-xs text-cyan-500/70 font-tech">F-STATISTIC</p>
+                      <p className="text-2xl font-cyber text-white text-glow-cyan">{ANOVA_RESULTS.mineral_comparison.f_statistic}</p>
                     </div>
-                    <div className="p-3 bg-slate-700/50 rounded-lg">
-                      <p className="text-xs text-slate-400">P-Value</p>
-                      <p className="text-2xl font-bold text-green-400">&lt; 0.001</p>
+                    <div className="p-3 rounded-lg bg-gradient-to-br from-emerald-500/10 to-emerald-500/5 border border-emerald-500/20">
+                      <p className="text-xs text-emerald-500/70 font-tech">P-VALUE</p>
+                      <p className="text-2xl font-cyber text-emerald-400 text-glow-emerald">&lt; 0.001</p>
                     </div>
                   </div>
                   <div className="space-y-2">
                     {ANOVA_RESULTS.mineral_comparison.groups.map((g) => (
-                      <div key={g.name} className="flex items-center justify-between p-2 bg-slate-700/30 rounded">
-                        <span className="text-white">{g.name}</span>
-                        <span className="text-slate-300">${g.mean.toFixed(0)}M ± {g.std.toFixed(0)}</span>
+                      <div key={g.name} className="flex items-center justify-between p-2 bg-slate-800/50 rounded-lg border border-slate-700/50 hover:border-cyan-500/30 transition-all">
+                        <span className="text-white font-tech">{g.name}</span>
+                        <span className="text-cyan-400 font-mono-tech">${g.mean.toFixed(0)}M ± {g.std.toFixed(0)}</span>
                       </div>
                     ))}
                   </div>
-                  <div className="p-3 bg-blue-500/10 border border-blue-500/30 rounded-lg">
-                    <p className="text-sm text-blue-300">{ANOVA_RESULTS.mineral_comparison.interpretation}</p>
+                  <div className="p-3 bg-cyan-500/10 border border-cyan-500/30 rounded-lg">
+                    <p className="text-sm text-cyan-300 font-display">{ANOVA_RESULTS.mineral_comparison.interpretation}</p>
                   </div>
                 </CardContent>
               </Card>
 
               {/* Time Period Comparison */}
-              <Card className="bg-slate-800/50 border-slate-700">
-                <CardHeader>
-                  <CardTitle className="text-white flex items-center gap-2">
-                    <TrendingUp className="w-5 h-5 text-green-400" />
-                    Temporal Analysis
+              <Card className="glass-card rounded-xl border-purple-500/20">
+                <CardHeader className="border-b border-purple-500/10">
+                  <CardTitle className="text-purple-400 flex items-center gap-2 font-tech tracking-wider">
+                    <TrendingUp className="w-5 h-5" />
+                    TEMPORAL ANALYSIS
                   </CardTitle>
-                  <CardDescription>ANOVA: Trade volumes across time periods</CardDescription>
+                  <CardDescription className="font-tech">ANOVA: Trade volumes across time periods</CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-4 pt-4">
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="p-3 bg-slate-700/50 rounded-lg">
-                      <p className="text-xs text-slate-400">F-Statistic</p>
+                    <div className="p-3 rounded-lg bg-gradient-to-br from-purple-500/10 to-purple-500/5 border border-purple-500/20">
+                      <p className="text-xs text-purple-500/70 font-tech">F-STATISTIC</p>
                       <p className="text-2xl font-bold text-white">{ANOVA_RESULTS.time_period.f_statistic}</p>
                     </div>
                     <div className="p-3 bg-slate-700/50 rounded-lg">

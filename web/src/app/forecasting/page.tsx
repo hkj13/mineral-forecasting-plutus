@@ -71,13 +71,13 @@ export default function ForecastingPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-900">
-        <div className="flex items-center gap-3 text-white">
-          <svg className="animate-spin h-6 w-6" viewBox="0 0 24 24">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-          </svg>
-          <span>Loading...</span>
+      <div className="min-h-screen flex items-center justify-center cyber-bg">
+        <div className="flex flex-col items-center gap-4">
+          <div className="relative">
+            <div className="w-16 h-16 border-4 border-purple-500/30 rounded-full animate-spin border-t-purple-400" />
+            <div className="absolute inset-0 w-16 h-16 border-4 border-cyan-500/20 rounded-full animate-spin border-b-cyan-400" style={{ animationDirection: 'reverse', animationDuration: '1.5s' }} />
+          </div>
+          <span className="font-tech text-purple-400 text-lg tracking-wider animate-pulse">INITIALIZING FORECAST ENGINE...</span>
         </div>
       </div>
     );
@@ -104,56 +104,62 @@ export default function ForecastingPage() {
     : historicalData;
 
   return (
-    <div className="min-h-screen bg-slate-900">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-slate-800/95 backdrop-blur-sm border-b border-slate-700">
+    <div className="min-h-screen cyber-bg relative">
+      {/* Animated Background */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-cyan-500/5" />
+      </div>
+
+      {/* Header - Futuristic */}
+      <header className="sticky top-0 z-50 glass border-b border-purple-500/20">
         <div className="max-w-[1600px] mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 group">
               <Link href="/dashboard">
-                <div className="p-2 rounded-lg bg-blue-500/20 hover:bg-blue-500/30 transition-colors">
-                  <Diamond className="w-6 h-6 text-blue-400" />
+                <div className="relative p-2.5 rounded-xl bg-gradient-to-br from-purple-500/20 to-cyan-500/20 border border-purple-500/30 group-hover:border-purple-400/50 transition-all">
+                  <Diamond className="w-6 h-6 text-purple-400" />
                 </div>
               </Link>
               <div>
-                <h1 className="text-xl font-bold text-white">Forecasting Engine</h1>
-                <p className="text-xs text-slate-400">ML-Powered Trade Predictions</p>
+                <h1 className="font-cyber text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">FORECAST ENGINE</h1>
+                <p className="text-xs text-purple-500/70 font-tech tracking-widest">ML-POWERED PREDICTIONS</p>
               </div>
             </div>
 
             <nav className="hidden md:flex items-center gap-1">
               <Link href="/dashboard">
-                <Button variant="ghost" className="text-slate-400 hover:text-white hover:bg-slate-700">
+                <Button variant="ghost" className="text-slate-400 hover:text-cyan-400 hover:bg-cyan-500/10 border border-transparent hover:border-cyan-500/30 transition-all font-tech">
                   <BarChart3 className="w-4 h-4 mr-2" />
                   Dashboard
                 </Button>
               </Link>
               <Link href="/forecasting">
-                <Button variant="ghost" className="text-white hover:bg-slate-700">
+                <Button variant="ghost" className="relative text-purple-400 hover:text-purple-300 hover:bg-purple-500/10 border border-transparent hover:border-purple-500/30 transition-all font-tech">
                   <LineChart className="w-4 h-4 mr-2" />
                   Forecasting
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
                 </Button>
               </Link>
               <Link href="/scenarios">
-                <Button variant="ghost" className="text-slate-400 hover:text-white hover:bg-slate-700">
+                <Button variant="ghost" className="text-slate-400 hover:text-emerald-400 hover:bg-emerald-500/10 border border-transparent hover:border-emerald-500/30 transition-all font-tech">
                   <Target className="w-4 h-4 mr-2" />
                   Scenarios
                 </Button>
               </Link>
               <Link href="/analytics">
-                <Button variant="ghost" className="text-slate-400 hover:text-white hover:bg-slate-700">
+                <Button variant="ghost" className="text-slate-400 hover:text-pink-400 hover:bg-pink-500/10 border border-transparent hover:border-pink-500/30 transition-all font-tech">
                   <PieChart className="w-4 h-4 mr-2" />
                   Analytics
                 </Button>
               </Link>
             </nav>
 
-            <div className="flex items-center gap-2">
-              <Button variant="outline" size="sm" className="text-slate-300 border-slate-600">
+            <div className="flex items-center gap-3">
+              <Button variant="outline" size="sm" className="cyber-button rounded-lg px-4 py-2 font-tech">
                 <Download className="w-4 h-4 mr-2" />
                 Export
               </Button>
-              <Button variant="ghost" size="sm" onClick={handleLogout} className="text-slate-400 hover:text-white">
+              <Button variant="ghost" size="sm" onClick={handleLogout} className="text-slate-500 hover:text-red-400 hover:bg-red-500/10 border border-transparent hover:border-red-500/30 rounded-lg transition-all">
                 <LogOut className="w-4 h-4" />
               </Button>
             </div>
@@ -162,28 +168,28 @@ export default function ForecastingPage() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-[1600px] mx-auto px-4 py-6">
+      <main className="max-w-[1600px] mx-auto px-4 py-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Left Sidebar - Parameters */}
           <div className="lg:col-span-1 space-y-4">
-            <Card className="bg-slate-800/50 border border-slate-700">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg text-white flex items-center gap-2">
+            <Card className="glass-card rounded-xl border-purple-500/20">
+              <CardHeader className="pb-3 border-b border-purple-500/10">
+                <CardTitle className="text-lg text-purple-400 flex items-center gap-2 font-tech tracking-wider">
                   <Settings className="w-5 h-5" />
-                  Forecast Parameters
+                  FORECAST PARAMETERS
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-5 pt-4">
                 {/* Mineral Selection */}
                 <div className="space-y-2">
-                  <label className="text-sm text-slate-400">Mineral</label>
+                  <label className="text-xs text-purple-500/70 font-tech tracking-wider">MINERAL</label>
                   <Select value={selectedMineral} onValueChange={setSelectedMineral}>
-                    <SelectTrigger className="bg-slate-700 border-slate-600 text-white">
+                    <SelectTrigger className="glass border-purple-500/30 text-purple-400 font-tech hover:border-purple-400/50 transition-all">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent className="bg-slate-800 border-slate-700">
+                    <SelectContent className="glass border-purple-500/30">
                       {MINERALS.map((m) => (
-                        <SelectItem key={m.name} value={m.name} className="text-white hover:bg-slate-700">
+                        <SelectItem key={m.name} value={m.name} className="text-slate-300 hover:text-purple-400 hover:bg-purple-500/10 font-tech">
                           {m.name}
                         </SelectItem>
                       ))}
@@ -194,8 +200,8 @@ export default function ForecastingPage() {
                 {/* Horizon */}
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <label className="text-sm text-slate-400">Forecast Horizon</label>
-                    <span className="text-sm font-medium text-white">{horizonMonths} months</span>
+                    <label className="text-xs text-cyan-500/70 font-tech tracking-wider">FORECAST HORIZON</label>
+                    <span className="text-sm font-cyber text-cyan-400">{horizonMonths} MO</span>
                   </div>
                   <Slider
                     value={[horizonMonths]}
@@ -205,7 +211,7 @@ export default function ForecastingPage() {
                     step={6}
                     className="w-full"
                   />
-                  <div className="flex justify-between text-xs text-slate-500">
+                  <div className="flex justify-between text-xs text-slate-500 font-tech">
                     <span>6mo</span>
                     <span>18mo</span>
                     <span>36mo</span>
@@ -214,19 +220,19 @@ export default function ForecastingPage() {
 
                 {/* Model Type */}
                 <div className="space-y-2">
-                  <label className="text-sm text-slate-400">Model Type</label>
+                  <label className="text-xs text-emerald-500/70 font-tech tracking-wider">MODEL TYPE</label>
                   <Select value={modelType} onValueChange={setModelType}>
-                    <SelectTrigger className="bg-slate-700 border-slate-600 text-white">
+                    <SelectTrigger className="glass border-emerald-500/30 text-emerald-400 font-tech hover:border-emerald-400/50 transition-all">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent className="bg-slate-800 border-slate-700">
-                      <SelectItem value="arima" className="text-white hover:bg-slate-700">
+                    <SelectContent className="glass border-emerald-500/30">
+                      <SelectItem value="arima" className="text-slate-300 hover:text-emerald-400 hover:bg-emerald-500/10 font-tech">
                         ARIMA (Classical)
                       </SelectItem>
-                      <SelectItem value="lstm" className="text-white hover:bg-slate-700">
+                      <SelectItem value="lstm" className="text-slate-300 hover:text-emerald-400 hover:bg-emerald-500/10 font-tech">
                         LSTM (Deep Learning)
                       </SelectItem>
-                      <SelectItem value="hybrid" className="text-white hover:bg-slate-700">
+                      <SelectItem value="hybrid" className="text-slate-300 hover:text-emerald-400 hover:bg-emerald-500/10 font-tech">
                         Hybrid ARIMA-LSTM
                       </SelectItem>
                     </SelectContent>
@@ -236,8 +242,8 @@ export default function ForecastingPage() {
                 {/* Confidence Level */}
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <label className="text-sm text-slate-400">Confidence Level</label>
-                    <span className="text-sm font-medium text-white">{confidenceLevel}%</span>
+                    <label className="text-xs text-pink-500/70 font-tech tracking-wider">CONFIDENCE LEVEL</label>
+                    <span className="text-sm font-cyber text-pink-400">{confidenceLevel}%</span>
                   </div>
                   <Slider
                     value={[confidenceLevel]}
@@ -252,18 +258,18 @@ export default function ForecastingPage() {
                 {/* Generate Button */}
                 <Button
                   onClick={handleGenerateForecast}
-                  className="w-full bg-blue-600 hover:bg-blue-700"
+                  className="w-full cyber-button rounded-xl py-5 font-tech tracking-wider"
                   disabled={isGenerating}
                 >
                   {isGenerating ? (
                     <>
                       <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
-                      Generating...
+                      <span className="text-cyan-400">COMPUTING...</span>
                     </>
                   ) : (
                     <>
                       <Play className="w-4 h-4 mr-2" />
-                      Generate Forecast
+                      <span className="text-cyan-400">GENERATE FORECAST</span>
                     </>
                   )}
                 </Button>
@@ -271,19 +277,19 @@ export default function ForecastingPage() {
             </Card>
 
             {/* Model Info */}
-            <Card className="bg-slate-800/50 border border-slate-700">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-white">Model Information</CardTitle>
+            <Card className="glass-card rounded-xl border-cyan-500/20">
+              <CardHeader className="pb-2 border-b border-cyan-500/10">
+                <CardTitle className="text-sm text-cyan-400 font-tech tracking-wider">MODEL INFORMATION</CardTitle>
               </CardHeader>
-              <CardContent className="text-sm text-slate-400 space-y-2">
-                <p>
-                  <strong className="text-white">ARIMA:</strong> Auto-regressive Integrated Moving Average with seasonal components.
+              <CardContent className="text-sm space-y-3 pt-3">
+                <p className="text-slate-400">
+                  <strong className="text-purple-400 font-tech">ARIMA:</strong> Auto-regressive Integrated Moving Average with seasonal components.
                 </p>
-                <p>
-                  <strong className="text-white">LSTM:</strong> Long Short-Term Memory neural network with regularization.
+                <p className="text-slate-400">
+                  <strong className="text-emerald-400 font-tech">LSTM:</strong> Long Short-Term Memory neural network with regularization.
                 </p>
-                <p>
-                  <strong className="text-white">Hybrid:</strong> ARIMA base + LSTM residual modeling for optimal accuracy.
+                <p className="text-slate-400">
+                  <strong className="text-cyan-400 font-tech">HYBRID:</strong> ARIMA base + LSTM residual modeling for optimal accuracy.
                 </p>
               </CardContent>
             </Card>
@@ -292,86 +298,86 @@ export default function ForecastingPage() {
           {/* Main Content - Charts & Results */}
           <div className="lg:col-span-3 space-y-6">
             {/* Forecast Chart */}
-            <Card className="bg-slate-800/50 border border-slate-700">
-              <CardHeader>
+            <Card className="glass-card rounded-xl border-cyan-500/20 overflow-hidden">
+              <CardHeader className="border-b border-cyan-500/10">
                 <div className="flex items-center justify-between">
                   <div>
-                    <CardTitle className="text-xl text-white">
-                      {selectedMineral} Import Forecast
+                    <CardTitle className="text-xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400 font-cyber">
+                      {selectedMineral.toUpperCase()} IMPORT FORECAST
                     </CardTitle>
-                    <CardDescription className="text-slate-400">
-                      {modelType.toUpperCase()} model | {horizonMonths}-month horizon | {confidenceLevel}% confidence
+                    <CardDescription className="text-slate-400 font-tech tracking-wider">
+                      {modelType.toUpperCase()} MODEL | {horizonMonths}-MONTH HORIZON | {confidenceLevel}% CONFIDENCE
                     </CardDescription>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Badge variant="outline" className="text-green-400 border-green-400/50">
-                      <CheckCircle className="w-3 h-3 mr-1" />
-                      Model Ready
-                    </Badge>
+                    <div className="px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-tech flex items-center gap-1">
+                      <CheckCircle className="w-3 h-3" />
+                      MODEL READY
+                    </div>
                   </div>
                 </div>
               </CardHeader>
-              <CardContent>
+              <CardContent className="pt-4">
                 <TradeChart
                   title=""
                   data={combinedChartData}
                   type="forecast"
                   showConfidence={true}
-                  color={MINERALS.find((m) => m.name === selectedMineral)?.color || "#3B82F6"}
+                  color={MINERALS.find((m) => m.name === selectedMineral)?.color || "#00f0ff"}
                 />
               </CardContent>
             </Card>
 
             {/* Metrics & Comparison */}
             <Tabs defaultValue="metrics" className="w-full">
-              <TabsList className="bg-slate-800 border border-slate-700">
-                <TabsTrigger value="metrics" className="data-[state=active]:bg-slate-700">
+              <TabsList className="glass border border-purple-500/20 p-1">
+                <TabsTrigger value="metrics" className="data-[state=active]:bg-purple-500/20 data-[state=active]:text-purple-400 font-tech">
                   Performance Metrics
                 </TabsTrigger>
-                <TabsTrigger value="comparison" className="data-[state=active]:bg-slate-700">
+                <TabsTrigger value="comparison" className="data-[state=active]:bg-purple-500/20 data-[state=active]:text-purple-400 font-tech">
                   Model Comparison
                 </TabsTrigger>
-                <TabsTrigger value="residuals" className="data-[state=active]:bg-slate-700">
+                <TabsTrigger value="residuals" className="data-[state=active]:bg-purple-500/20 data-[state=active]:text-purple-400 font-tech">
                   Residual Analysis
                 </TabsTrigger>
               </TabsList>
 
               <TabsContent value="metrics" className="mt-4">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <Card className="bg-slate-800/50">
+                  <Card className="glass-card rounded-xl border-l-2 border-l-cyan-500">
                     <CardContent className="p-4 text-center">
-                      <p className="text-sm text-slate-400 mb-1">MAE</p>
-                      <p className="text-2xl font-bold text-white">
+                      <p className="text-xs text-cyan-500/70 font-tech tracking-wider mb-1">MAE</p>
+                      <p className="text-2xl font-cyber text-white text-glow-cyan">
                         {forecastData?.metrics.mae.toFixed(1) || "--"}
                       </p>
-                      <p className="text-xs text-slate-500">Mean Absolute Error</p>
+                      <p className="text-xs text-slate-500 font-tech">Mean Absolute Error</p>
                     </CardContent>
                   </Card>
-                  <Card className="bg-slate-800/50">
+                  <Card className="glass-card rounded-xl border-l-2 border-l-purple-500">
                     <CardContent className="p-4 text-center">
-                      <p className="text-sm text-slate-400 mb-1">MAPE</p>
-                      <p className="text-2xl font-bold text-white">
+                      <p className="text-xs text-purple-500/70 font-tech tracking-wider mb-1">MAPE</p>
+                      <p className="text-2xl font-cyber text-white text-glow-purple">
                         {forecastData?.metrics.mape.toFixed(1) || "--"}%
                       </p>
-                      <p className="text-xs text-slate-500">Mean Abs. % Error</p>
+                      <p className="text-xs text-slate-500 font-tech">Mean Abs. % Error</p>
                     </CardContent>
                   </Card>
-                  <Card className="bg-slate-800/50">
+                  <Card className="glass-card rounded-xl border-l-2 border-l-pink-500">
                     <CardContent className="p-4 text-center">
-                      <p className="text-sm text-slate-400 mb-1">RMSE</p>
-                      <p className="text-2xl font-bold text-white">
+                      <p className="text-xs text-pink-500/70 font-tech tracking-wider mb-1">RMSE</p>
+                      <p className="text-2xl font-cyber text-white">
                         {forecastData?.metrics.rmse.toFixed(1) || "--"}
                       </p>
-                      <p className="text-xs text-slate-500">Root Mean Sq. Error</p>
+                      <p className="text-xs text-slate-500 font-tech">Root Mean Sq. Error</p>
                     </CardContent>
                   </Card>
-                  <Card className="bg-slate-800/50">
+                  <Card className="glass-card rounded-xl border-l-2 border-l-emerald-500">
                     <CardContent className="p-4 text-center">
-                      <p className="text-sm text-slate-400 mb-1">R² Score</p>
-                      <p className="text-2xl font-bold text-green-400">
+                      <p className="text-xs text-emerald-500/70 font-tech tracking-wider mb-1">R² SCORE</p>
+                      <p className="text-2xl font-cyber text-emerald-400 text-glow-emerald">
                         {forecastData?.metrics.r2.toFixed(2) || "--"}
                       </p>
-                      <p className="text-xs text-slate-500">Coefficient of Determination</p>
+                      <p className="text-xs text-slate-500 font-tech">Coefficient of Determination</p>
                     </CardContent>
                   </Card>
                 </div>
