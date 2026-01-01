@@ -32,6 +32,7 @@ import {
   FileText,
   PieChart,
 } from "lucide-react";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export default function ForecastingPage() {
   const router = useRouter();
@@ -155,6 +156,7 @@ export default function ForecastingPage() {
             </nav>
 
             <div className="flex items-center gap-3">
+              <ThemeToggle />
               <Button variant="outline" size="sm" className="cyber-button rounded-lg px-4 py-2 font-tech">
                 <Download className="w-4 h-4 mr-2" />
                 Export

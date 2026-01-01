@@ -41,6 +41,7 @@ import {
   Zap,
   Activity,
 } from "lucide-react";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -149,6 +150,7 @@ export default function DashboardPage() {
 
             {/* Action Buttons */}
             <div className="flex items-center gap-3">
+              <ThemeToggle />
               <Button 
                 variant="outline" 
                 size="sm" 

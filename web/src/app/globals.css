@@ -2,7 +2,75 @@
 @import "tailwindcss";
 
 :root {
-  /* FUTURISTIC 2050 COLOR PALETTE */
+  --radius: 0.75rem;
+}
+
+/* ===== LIGHT THEME (DEFAULT) ===== */
+[data-theme='light'] {
+  /* Base Colors */
+  --cyber-black: #f8f9fc;
+  --cyber-dark: #ffffff;
+  --cyber-deeper: #f1f3f9;
+  --cyber-surface: #e8ebf3;
+  
+  /* Accent Colors - Darker/More Vibrant for Light Mode */
+  --neon-cyan: #0891b2;
+  --neon-purple: #7c3aed;
+  --neon-pink: #db2777;
+  --neon-blue: #2563eb;
+  --neon-emerald: #059669;
+  --neon-orange: #ea580c;
+  --neon-red: #dc2626;
+  
+  /* Gradients */
+  --holo-gradient: linear-gradient(135deg, #0891b2 0%, #7c3aed 50%, #db2777 100%);
+  --cyber-gradient: linear-gradient(135deg, #f8f9fc 0%, #e8ebf3 100%);
+  
+  /* Glass Effects - Light Mode */
+  --glass-bg: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(8, 145, 178, 0.2);
+  --glass-glow: rgba(8, 145, 178, 0.08);
+  
+  /* Text Colors */
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  
+  /* Shadows instead of glows */
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --card-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --glow-effect: 0 2px 8px rgba(8, 145, 178, 0.15);
+  
+  /* Theme Variables */
+  --background: 220 20% 98%;
+  --foreground: 222 47% 11%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+  --primary: 187 91% 37%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 270 91% 65%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 220 14% 96%;
+  --muted-foreground: 220 9% 46%;
+  --accent: 270 91% 65%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  --ring: 187 91% 37%;
+  --chart-1: 187 91% 37%;
+  --chart-2: 270 91% 65%;
+  --chart-3: 160 84% 39%;
+  --chart-4: 217 91% 60%;
+  --chart-5: 340 82% 52%;
+}
+
+/* ===== DARK THEME ===== */
+[data-theme='dark'] {
+  /* Base Colors */
   --cyber-black: #0a0e1a;
   --cyber-dark: #0f1419;
   --cyber-deeper: #13161f;
@@ -26,6 +94,16 @@
   --glass-border: rgba(0, 240, 255, 0.2);
   --glass-glow: rgba(0, 240, 255, 0.1);
   
+  /* Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  
+  /* Glow Effects */
+  --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --card-shadow-hover: 0 8px 32px rgba(0, 240, 255, 0.1), 0 0 60px rgba(0, 240, 255, 0.05);
+  --glow-effect: 0 0 20px rgba(0, 240, 255, 0.3);
+  
   /* Theme Variables */
   --background: 222 47% 5%;
   --foreground: 210 40% 98%;
@@ -46,7 +124,6 @@
   --border: 222 30% 18%;
   --input: 222 30% 15%;
   --ring: 187 100% 50%;
-  --radius: 0.75rem;
   --chart-1: 187 100% 50%;
   --chart-2: 270 91% 65%;
   --chart-3: 160 84% 39%;
@@ -78,6 +155,7 @@
   --font-mono: 'JetBrains Mono', var(--font-geist-mono), monospace;
 }
 
+/* ===== SMOOTH THEME TRANSITIONS ===== */
 * {
   border-color: hsl(var(--border));
 }
@@ -88,9 +166,126 @@ html {
 
 body {
   background: var(--cyber-black);
-  color: hsl(var(--foreground));
+  color: var(--text-primary);
   font-family: 'Space Grotesk', system-ui, sans-serif;
   overflow-x: hidden;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Apply smooth transitions to themed elements */
+.theme-transition,
+.glass,
+.glass-card,
+.cyber-button,
+header,
+main,
+.cyber-bg,
+[class*='bg-'],
+[class*='text-'],
+[class*='border-'] {
+  transition: background-color 0.5s ease,
+              color 0.5s ease,
+              border-color 0.5s ease,
+              box-shadow 0.5s ease,
+              fill 0.5s ease,
+              stroke 0.5s ease;
+}
+
+/* ===== THEME TOGGLE BUTTON ===== */
+.theme-toggle-btn {
+  position: relative;
+  width: 56px;
+  height: 28px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+[data-theme='light'] .theme-toggle-btn {
+  background: linear-gradient(135deg, #e0f2fe 0%, #f0fdfa 100%);
+  border: 1px solid #0891b2;
+  box-shadow: 0 2px 8px rgba(8, 145, 178, 0.2);
+}
+
+[data-theme='dark'] .theme-toggle-btn {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.05);
+}
+
+[data-theme='light'] .theme-toggle-btn:hover {
+  box-shadow: 0 4px 16px rgba(8, 145, 178, 0.3);
+}
+
+[data-theme='dark'] .theme-toggle-btn:hover {
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.4);
+}
+
+.theme-toggle-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+}
+
+.theme-toggle-thumb {
+  position: absolute;
+  top: 2px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.theme-toggle-thumb.light {
+  left: 2px;
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
+}
+
+.theme-toggle-thumb.dark {
+  left: calc(100% - 24px);
+  background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.6);
+}
+
+.theme-icon {
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  transition: all 0.4s ease;
+}
+
+.sun-icon {
+  color: #ffffff;
+  opacity: 0;
+  transform: rotate(-90deg) scale(0);
+}
+
+.moon-icon {
+  color: #ffffff;
+  opacity: 0;
+  transform: rotate(90deg) scale(0);
+}
+
+.sun-icon.active {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.moon-icon.active {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
 }
 
 /* ===== FUTURISTIC FONTS ===== */

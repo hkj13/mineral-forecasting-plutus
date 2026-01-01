@@ -33,6 +33,7 @@ import {
   Check,
   PieChart,
 } from "lucide-react";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export default function ScenariosPage() {
   const router = useRouter();
@@ -194,6 +195,7 @@ export default function ScenariosPage() {
             </nav>
 
             <div className="flex items-center gap-3">
+              <ThemeToggle />
               <Button variant="outline" size="sm" className="cyber-button rounded-lg px-4 py-2 font-tech">
                 <Download className="w-4 h-4 mr-2" />
                 Export
